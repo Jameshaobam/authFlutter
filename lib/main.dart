@@ -27,7 +27,10 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       initialRoute: "/",
-      routes: {"/": (context) => Home(), Login.routeName: (context) => Login()},
+      routes: {
+        "/": (context) => Login(),
+        Login.routeName: (context) => Login()
+      },
     );
   }
 }

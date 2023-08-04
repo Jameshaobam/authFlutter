@@ -20,10 +20,22 @@ class _LoginState extends State<Login> {
 
   void goToLogin(String username, String password) async {
     var res = await auth.login(username, password);
-    print(" Helooooooo " + data.toString());
-    setState(() {
-      data = res;
-    });
+    var access_token = res["access"];
+    print(access_token == null);
+    print(" Helooooooo " + res.toString());
+    if (access_token != null) {
+      var user_auth = await auth.isAuth(access_token);
+      setState(() {
+        data = user_auth;
+      });
+    } else {
+      // var user_auth = await auth.isAuth(access: '');
+      setState(() {
+        data = res;
+      });
+    }
+
+    // print(user_auth);
   }
 
   @override
